@@ -1,23 +1,22 @@
 import React from "react";
 import Image from "next/image";
-import chickenPic from "../../public/chicken.jpeg";
 import Link from "next/link";
 
-export default function Recipe() {
+export default function Recipe({ recipe }) {
   return (
-    <Link href={`/recipes/`}>
-      <div className='relative max-w-[250px] max-h-[180px]'>
+    <div className='relative max-w-[300px] max-h-[200px] rounded-2xl shadow-xl'>
+      <Link href={`/recipes/${recipe.title}`}>
         <Image
-          src={chickenPic}
-          alt='chicken'
-          width='250'
-          height='180'
-          className='absolte left-0 rounded-xl object-cover'
+          src={recipe.image}
+          alt={recipe.title}
+          width={300}
+          height={200}
+          className='absolte left-0 rounded-2xl object-cover'
         />
-        <p className='absolute bottom-0 left-1/2 transform translate-x-[-50%] h-[40%] w-full z-5 font-semibold text-[15px] text-white text-center flex justify-center items-center'>
-          Chicken soup
+        <p className='absolute bottom-0 left-1/2 transform translate-x-[-50%] h-[40%] px-2 w-full z-5 font-semibold text-[15px] text-white text-center flex justify-center items-center'>
+          {recipe.title}
         </p>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
