@@ -13,6 +13,6 @@ module.exports = {
     appDir: true,
   },
   images: {
-    domains: ["www.inspiredtaste.net"],
+    domains: ["spoonacular.com"],
   },
 };
