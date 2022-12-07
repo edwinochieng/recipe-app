@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <div className=''>
           <Sidebar />
         </div>
-        <div className='bg-gray-100 px-2 pt-1 lg:px-28 lg:ml-[330px] min-h-screen flex flex-col'>
+        <div className='bg-white px-2 pt-6 sm:pt-8 lg:px-28 lg:ml-[330px] min-h-screen flex flex-col'>
           {children}
         </div>
       </body>

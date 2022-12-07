@@ -4,8 +4,7 @@ import { baseUrl } from "../utils/baseUrl";
 
 const getPopularRecipes = async () => {
   const res = await fetch(
-    `${baseUrl}/random?apiKey=${process.env.API_KEY}&&number=8`,
-    { cache: "force-cache" }
+    `${baseUrl}/random?apiKey=${process.env.API_KEY}&&number=9`
   );
 
   if (!res.ok) {
@@ -22,7 +21,7 @@ export default async function Home() {
   return (
     <div className='w-full mx-auto'>
       <Search />
-      <div className='mt-8 sm:mt-12 max-w-[1000px] w-full mx-auton'>
+      <div className='mt-6 sm:mt-8'>
         <h1 className='text-gray-800 text-[18px] text-center font-semibold'>
           Popular Picks
         </h1>
