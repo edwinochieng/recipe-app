@@ -4,9 +4,12 @@ import Details from "./Details";
 import SimilarRecipes from "./SimilarRecipes";
 
 const getRecipeDetails = async (id) => {
-  const res = await fetch(`${baseUrl}/${id}/information`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${baseUrl}/${id}/information?apiKey=${process.env.API_KEY}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Data not fetched");
@@ -16,7 +19,10 @@ const getRecipeDetails = async (id) => {
 };
 
 const getSimilarRecipes = async (id) => {
-  const res = await fetch(`${baseUrl}/${id}/similar`, { cache: "no-store" });
+  const res = await fetch(
+    `${baseUrl}/${id}/similar?apiKey=${process.env.API_KEY}`,
+    { cache: "no-store" }
+  );
 
   if (!res.ok) {
     throw new Error("Data not fetched");
@@ -25,11 +31,12 @@ const getSimilarRecipes = async (id) => {
   return res.json();
 };
 
-export default async function RecipeDetails({ searchParams }) {
-  const recipeData = await getRecipeDetails(searchParams.id);
-  const similarData = await getSimilarRecipes(searchParams.id);
+export default async function RecipeDetails({ params }) {
+  const recipeData = await getRecipeDetails(params.id);
+  const similarData = await getSimilarRecipes(params.id);
 
   const [details, recipes] = await Promise.all([recipeData, similarData]);
+
   return (
     <div>
       <div>
