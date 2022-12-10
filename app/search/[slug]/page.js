@@ -19,8 +19,9 @@ export default async function SearchPage({ params }) {
 
   return (
     <div>
-      <h1 className='text-gray-800 text-[16px] text-center font-semibold'>
-        Search results for <span className='font-bold'>{params.slug}</span>
+      <h1 className='text-gray-600 text-[16px] text-center font-semibold'>
+        Search results for{" "}
+        <span className='font-bold italic text-gray-800'>{params.slug}</span>
       </h1>
       <div className='py-8 flex flex-col md:flex-row justify-start items-center flex-wrap gap-6'>
         {data.results.map((recipe) => (

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Recipe({ recipe }) {
   return (
-    <div className='relative max-w-[300px] max-h-[200px] rounded-2xl shadow-xl transform hover:scale-110 ease-in duration-200'>
+    <div className='my-2 relative max-w-[300px] max-h-[200px] rounded-2xl shadow-xl transform hover:scale-110 ease-in duration-200'>
       <Link href={`/recipes/${recipe.id}`}>
         <Image
           src={recipe.image}

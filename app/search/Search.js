@@ -35,7 +35,7 @@ export default function Search() {
     <div className='max-w-[550px] mx-auto mt-5 z-[8]'>
       <form
         onSubmit={handleSubmit}
-        className='relative flex items-center w-full h-12 shadow-2xl rounded-lg focus-within:shadow-lg bg-white overflow-hidden'
+        className='relative flex items-center w-full h-12 shadow-2xl shadow-gray-500 rounded-lg focus-within:shadow-xl bg-white overflow-hidden'
       >
         <input
           className='h-full w-full outline-none text-[14px] font-medium text-gray-800 pl-3 placeholder:text-gray-400'
