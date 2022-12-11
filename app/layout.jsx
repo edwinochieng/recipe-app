@@ -1,6 +1,7 @@
 import "./globals.css";
 import Sidebar from "./Sidebar";
 import { Poppins } from "@next/font/google";
+import Providers from "./Providers";
 
 const poppins = Poppins({
   weight: "400",
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
           <Sidebar />
         </div>
         <div className='bg-white px-2 pt-6 sm:pt-8 lg:px-28 lg:ml-[330px] min-h-screen flex flex-col'>
-          {children}
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>
