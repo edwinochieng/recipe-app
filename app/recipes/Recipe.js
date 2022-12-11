@@ -1,8 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 export default function Recipe({ recipe }) {
+  const [isClicked, setisClicked] = useState(false);
+
+  const handleFavourites = () => {
+    setisClicked((prevValue) => !prevValue);
+  };
   return (
     <div className='my-2 relative max-w-[300px] max-h-[200px] rounded-2xl shadow-xl transform hover:scale-110 ease-in duration-200'>
       <Link href={`/recipes/${recipe.id}`}>
@@ -17,6 +25,14 @@ export default function Recipe({ recipe }) {
           {recipe.title}
         </p>
       </Link>
+      <div
+        className={`absolute top-2 right-2 z-5 cursor-pointer ${
+          isClicked ? "text-red-500" : "text-gray-800"
+        }`}
+        onClick={handleFavourites}
+      >
+        {isClicked ? <BsHeartFill size={26} /> : <BsHeart size={26} />}
+      </div>
     </div>
   );
 }
