@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
-import { searchData } from "../../utils/data";
 
-export default function Search() {
+export default function Search({ recipes }) {
   const [input, setInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const router = useRouter();
@@ -15,8 +14,8 @@ export default function Search() {
   const handleFilter = (e) => {
     const searchWord = e.target.value;
     setInput(searchWord);
-    const searchFilter = searchData.filter((value) =>
-      value.name.toLowerCase().includes(input.toLowerCase())
+    const searchFilter = recipes.filter((value) =>
+      value.title.toLowerCase().includes(input.toLowerCase())
     );
 
     input === "" ? setFilteredData([]) : setFilteredData(searchFilter);
@@ -31,8 +30,9 @@ export default function Search() {
     setFilteredData([]);
     setInput("");
   };
+
   return (
-    <div className='max-w-[550px] mx-auto mt-5 z-[8]'>
+    <div className='max-w-[550px] mx-auto mt-5 z-[5]'>
       <form
         onSubmit={handleSubmit}
         className='relative flex items-center w-full h-12 shadow-2xl shadow-gray-500 rounded-lg focus-within:shadow-xl bg-white overflow-hidden'
@@ -54,10 +54,10 @@ export default function Search() {
       </form>
 
       {filteredData.length > 0 && (
-        <div className='w-full bg-white mt-[6px] shadow-2xl rounded-lg py-4 text-[15px] text-gray-800 font-medium'>
+        <div className='w-full z-[8] bg-white mt-[6px] shadow-2xl rounded-lg py-4 text-[15px] text-gray-800 font-medium'>
           {filteredData.slice(0, 10).map((data) => (
             <div key={data.id} className='py-[1px] px-3 hover:bg-gray-100'>
-              <Link href={`/search/${data.name}`}>{data.name}</Link>
+              <Link href={`/search/${data.title}`}>{data.title}</Link>
             </div>
           ))}
         </div>
