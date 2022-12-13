@@ -1,15 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { Favourites } from "../context";
+import { toast } from "react-toastify";
 
 export default function Recipe({ recipe }) {
+  const { dispatch } = useContext(Favourites);
+
   const [isClicked, setisClicked] = useState(false);
 
-  const handleFavourites = () => {
-    setisClicked((prevValue) => !prevValue);
+  const addToFavourites = (recipe) => {
+    setisClicked(true);
+
+    dispatch({
+      type: "ADD_TO_FAVOURITES",
+      payload: { ...recipe },
+    });
+
+    toast.success("Added to Favourites");
+  };
+
+  const removeFromFavourites = (recipe) => {
+    setisClicked(false);
+    dispatch({
+      type: "REMOVE_FROM_FAVOURITES",
+      payload: { ...recipe },
+    });
+
+    toast.success("Removed from Favourites!");
   };
   return (
     <div className='my-2 relative max-w-[300px] max-h-[200px] rounded-2xl shadow-xl transform hover:scale-110 ease-in duration-200'>
@@ -29,7 +50,11 @@ export default function Recipe({ recipe }) {
         className={`absolute top-2 right-2 z-5 cursor-pointer ${
           isClicked ? "text-red-500" : "text-gray-800"
         }`}
-        onClick={handleFavourites}
+        onClick={
+          isClicked
+            ? () => addToFavourites(recipe)
+            : () => removeFromFavourites(recipe)
+        }
       >
         {isClicked ? <BsHeartFill size={26} /> : <BsHeart size={26} />}
       </div>
