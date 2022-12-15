@@ -1,37 +1,44 @@
 "use client";
 
 import React, { createContext, useReducer } from "react";
+import Cookies from "js-cookie";
 
 export const Favourites = createContext();
 
 const initialState = {
-  items: [],
+  favourites: Cookies.get("favourites")
+    ? JSON.parse(Cookies.get("favourites"))
+    : { items: [] },
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_TO_FAVOURITES": {
       const newItem = action.payload;
-      const existItem = state.items.find((item) => item.id === newItem.id);
+      const existItem = state.favourites.items?.find(
+        (item) => item.id === newItem.id
+      );
 
       const items = existItem
-        ? state.items.map((item) =>
+        ? state.favourites.items.map((item) =>
             item.title === existItem.title ? newItem : item
           )
-        : [...state.items, newItem];
+        : [...state.favourites.items, newItem];
 
+      Cookies.set("favourites", JSON.stringify({ ...state.favourites, items }));
       return {
         ...state,
-        items: { ...state.items, items },
+        favourites: { ...state.favourites, items },
       };
     }
     case "REMOVE_FROM_FAVOURITES": {
-      const favouriteItems = state.items.filter(
+      const items = state.favourites.items?.filter(
         (item) => item.id !== action.payload.id
       );
+      Cookies.set("favourites", JSON.stringify({ ...state.favourites, items }));
       return {
         ...state,
-        items: { ...state.items, favouriteItems },
+        favourites: { ...state.favourites, items },
       };
     }
     default:
@@ -43,7 +50,7 @@ export default function FavouritesProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <Favourites.Provider value={{ items: state.items, dispatch }}>
+    <Favourites.Provider value={{ favourites: state.favourites, dispatch }}>
       {children}
     </Favourites.Provider>
   );
