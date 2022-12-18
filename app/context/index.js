@@ -16,11 +16,11 @@ function reducer(state, action) {
     case "ADD_TO_FAVOURITES": {
       const newItem = action.payload;
       const existItem = state.favourites.items?.find(
-        (item) => item.id === newItem.id
+        (item) => item?.id === newItem?.id
       );
 
       const items = existItem
-        ? state.favourites.items.map((item) =>
+        ? state.favourites.items?.map((item) =>
             item.title === existItem.title ? newItem : item
           )
         : [...state.favourites.items, newItem];
@@ -33,7 +33,7 @@ function reducer(state, action) {
     }
     case "REMOVE_FROM_FAVOURITES": {
       const items = state.favourites.items?.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item?.id !== action.payload?.id
       );
       Cookies.set("favourites", JSON.stringify({ ...state.favourites, items }));
       return {
