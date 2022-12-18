@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsBookmarkStarFill } from "react-icons/bs";
@@ -13,7 +13,7 @@ export default function Recipe({ recipe }) {
   const addToFavourites = (recipe) => {
     dispatch({
       type: "ADD_TO_FAVOURITES",
-      payload: { ...recipe },
+      payload: recipe,
     });
     toast.success("Added to Favourites");
   };
