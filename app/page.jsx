@@ -1,5 +1,5 @@
-import Recipe from "./recipes/Recipe";
-import Search from "./search/Search";
+import Recipe from "../components/Recipe";
+import Search from "../components/Search";
 import { baseUrl } from "../utils/baseUrl";
 
 const getPopularRecipes = async () => {
