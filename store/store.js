@@ -1,21 +1,27 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useFavoriteRecipesStore = create((set, get) => ({
-  favoriteRecipes: [],
+export const useFavoriteRecipesStore = create(
+  persist(
+    (set, get) => ({
+      favoriteRecipes: [],
 
-  addRecipe: (recipe) => {
-    set({ favoriteRecipes: [...get().favoriteRecipes, recipe] });
-  },
+      addRecipe: (recipe) => {
+        set({ favoriteRecipes: [...get().favoriteRecipes, recipe] });
+      },
 
-  removeFromFavorites: (recipeId) => {
-    set({
-      favoriteRecipes: get().favoriteRecipes.filter(
-        (item) => item.id !== recipeId
-      ),
-    });
-  },
+      removeFromFavorites: (recipeId) => {
+        set({
+          favoriteRecipes: get().favoriteRecipes.filter(
+            (item) => item.id !== recipeId
+          ),
+        });
+      },
 
-  clearStore: () => {
-    set({ favoriteRecipes: [] });
-  },
-}));
+      clearStore: () => {
+        set({ favoriteRecipes: [] });
+      },
+    }),
+    { name: "favorites" }
+  )
+);
