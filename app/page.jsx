@@ -17,7 +17,6 @@ const getPopularRecipes = async () => {
 export default async function Home() {
   const data = await getPopularRecipes();
 
-  //console.log(data.recipes);
   return (
     <div className='w-full mx-auto'>
       <Search recipes={data.recipes} />
