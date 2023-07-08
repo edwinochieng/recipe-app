@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useFavoriteRecipesStore } from "../store/store";
+import { toast } from "react-hot-toast";
 
 export default function Recipe({ recipe }) {
   const savedRecipes = useFavoriteRecipesStore(
@@ -20,8 +21,10 @@ export default function Recipe({ recipe }) {
   const handleSaveRecipe = () => {
     if (isRecipeSaved) {
       removeFromFavorites(recipe.id);
+      toast.success("Removed from favorites");
     } else {
       addToFavorites(recipe);
+      toast.success("Added to favorites");
     }
   };
 
