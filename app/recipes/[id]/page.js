@@ -1,7 +1,7 @@
 import React from "react";
 import { baseUrl } from "../../../utils/baseUrl";
-import Details from "./Details";
-import SimilarRecipes from "./SimilarRecipes";
+import Details from "../../../components/Details";
+import SimilarRecipes from "../../../components/SimilarRecipes";
 
 const getRecipeDetails = async (id) => {
   const res = await fetch(

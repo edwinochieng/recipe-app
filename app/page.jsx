@@ -1,5 +1,5 @@
-import Recipe from "./recipes/Recipe";
-import Search from "./search/Search";
+import Recipe from "../components/Recipe";
+import Search from "../components/Search";
 import { baseUrl } from "../utils/baseUrl";
 
 const getPopularRecipes = async () => {
@@ -17,7 +17,6 @@ const getPopularRecipes = async () => {
 export default async function Home() {
   const data = await getPopularRecipes();
 
-  //console.log(data.recipes);
   return (
     <div className='w-full mx-auto'>
       <Search recipes={data.recipes} />

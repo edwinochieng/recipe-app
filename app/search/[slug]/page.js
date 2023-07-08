@@ -1,6 +1,6 @@
 import React from "react";
 import { baseUrl } from "../../../utils/baseUrl";
-import Recipe from "../../recipes/Recipe";
+import Recipe from "../../../components/Recipe";
 
 const getRecipe = async (searchWord) => {
   const res = await fetch(
